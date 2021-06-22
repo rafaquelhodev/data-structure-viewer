@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Button from '../components/Button';
 import Form from "../components/Form";
+import Node from "../components/Node";
 import { DataStructure } from "../dataStructures/dataStructure";
 import { LinkedListDs } from "../dataStructures/linkedList";
 
@@ -14,7 +15,7 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
 
         this.linkedList = new LinkedListDs();
 
-        this.state = { linkedList: this.linkedList, addedValue: 1}
+        this.state = { linkedList: this.linkedList, addedValue: 1 }
 
         this.add = this.add.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
@@ -28,19 +29,25 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
 
     handleAdd() {
         this.add(this.state.addedValue)
+        this.setState({ ...this.state, linkedList: this.linkedList })
     }
 
     handleChange(e: any) {
-        this.setState({...this.state, addedValue: e.target.value})
+        this.setState({ ...this.state, addedValue: e.target.value })
     }
 
     render() {
         return (
             <div>
-                <Form
-                    handleAdd={this.handleAdd}
-                    value={this.state.addedValue}
-                onChange={this.handleChange}></Form>
+                <div>
+                    <Form
+                        handleAdd={this.handleAdd}
+                        value={this.state.addedValue}
+                        onChange={this.handleChange}></Form>
+                </div>
+                <div>
+                    <Node linkedList={this.state.linkedList}></Node>
+                </div>
             </div>
         )
     }
