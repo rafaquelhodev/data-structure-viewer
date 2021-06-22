@@ -7,7 +7,7 @@ function renderLinkedList(props: InputProps) {
     let currentNode = props.linkedList.getHead();
     while (currentNode != null) {
         const el = (<div style={rectangle}>
-            <span>value: {currentNode.value}</span>
+            <div>value: {currentNode.value}</div>
         </div>);
 
         linkedListJsx.push(el);
@@ -23,14 +23,23 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const rectangle = {
-    width: '50px',
-    height: '50px',
-    background: 'green'
+    "width": '100px',
+    "height": '150px',
+    "background": 'green',
+    "margin": "100px",
+    "display": "flex",
+    "flex-direction": "column",
+    "justify-content": "flex-end",
+    "align-items": "center"
+}
+
+const nodeListStyle = {
+    display: 'flex'
 }
 
 const Node: React.FC<InputProps> = (props) => {
     return (
-        <div>
+        <div style={nodeListStyle}>
             {renderLinkedList(props)}
         </div>
     );
