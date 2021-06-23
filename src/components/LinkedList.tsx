@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Button from '../components/Button';
 import Form from "../components/Form";
-import Node from "../components/Node";
+import NodeList from "../components/NodeList";
 import { DataStructure } from "../dataStructures/dataStructure";
 import { LinkedListDs } from "../dataStructures/linkedList";
 
@@ -46,7 +46,7 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
                         onChange={this.handleChange}></Form>
                 </div>
                 <div>
-                    <Node linkedList={this.state.linkedList}></Node>
+                    <NodeList linkedList={this.state.linkedList}></NodeList>
                 </div>
             </div>
         )

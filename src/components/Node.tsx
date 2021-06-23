@@ -1,25 +1,7 @@
 import React, { InputHTMLAttributes } from 'react';
-import { LinkedListDs } from '../dataStructures/linkedList';
-
-function renderLinkedList(props: InputProps) {
-    let linkedListJsx: JSX.Element[] = [];
-
-    let currentNode = props.linkedList.getHead();
-    while (currentNode != null) {
-        const el = (<div style={rectangle}>
-            <div>value: {currentNode.value}</div>
-        </div>);
-
-        linkedListJsx.push(el);
-
-        currentNode = currentNode.next;
-    }
-
-    return linkedListJsx;
-}
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    linkedList: LinkedListDs;
+    value: number;
 }
 
 const rectangle = {
@@ -33,15 +15,11 @@ const rectangle = {
     "align-items": "center"
 }
 
-const nodeListStyle = {
-    display: 'flex'
-}
-
 const Node: React.FC<InputProps> = (props) => {
     return (
-        <div style={nodeListStyle}>
-            {renderLinkedList(props)}
-        </div>
+        (<div style={rectangle}>
+            <div>value: {props.value}</div>
+        </div>)
     );
 };
 
