@@ -46,7 +46,9 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
                         onChange={this.handleChange}></Form>
                 </div>
                 <div>
-                    <NodeList linkedList={this.state.linkedList}></NodeList>
+                    <NodeList linkedList={this.state.linkedList} onClick={this.handleAdd}
+                        addedValue={this.state.addedValue}
+                        handleChange={this.handleChange}></NodeList>
                 </div>
             </div>
         )
