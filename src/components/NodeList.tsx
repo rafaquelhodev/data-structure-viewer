@@ -3,7 +3,7 @@ import Node from "./Node";
 
 interface InputProps2 {
     linkedList: LinkedListDs;
-    onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick: (arg: number) => void;
     handleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void;
     addedValue: number;
 }
@@ -12,12 +12,22 @@ function renderLinkedList(props: InputProps2) {
     let linkedListJsx: JSX.Element[] = [];
 
     let currentNode = props.linkedList.getHead();
+
+    let nodeId = 0;
+
     while (currentNode != null) {
-        const el = <Node value={currentNode.value} onClick={props.onClick} addedValue={props.addedValue} handleChange={props.handleChange}></Node>;
+        const el = <Node value={currentNode.value}
+            onClick={props.onClick}
+            addedValue={props.addedValue}
+            handleChange={props.handleChange}
+            id={nodeId}
+            addedPosition={nodeId}></Node>;
 
         linkedListJsx.push(el);
 
         currentNode = currentNode.next;
+
+        nodeId += 1;
     }
 
     return linkedListJsx;

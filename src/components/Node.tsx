@@ -6,10 +6,12 @@ import Form from './Form';
 
 
 interface InputProps2 {
+    id: number;
     value: number;
-    onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick: (arg: number) => void;
     handleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void;
     addedValue: number;
+    addedPosition: number;
 }
 
 const rectangle = {
@@ -30,14 +32,14 @@ const Node: React.FC<InputProps2> = (props) => {
         setIsOpen(!isOpen);
     }
 
-    function handleAddModal(e: React.MouseEvent<HTMLButtonElement>) {
-        props.onClick(e);
+    function handleAddModal() {
+        props.onClick(props.addedPosition);
         toggleModal();
     }
 
     return (
         (
-            <div>
+            <div key={props.id}>
                 <div className="containerNode">
                     <div className="rectangle" style={rectangle}>
                         <div>value: {props.value}</div>

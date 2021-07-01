@@ -20,6 +20,8 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
         this.add = this.add.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.addPosition = this.addPosition.bind(this)
+        this.handleAddPosition = this.handleAddPosition.bind(this)
     }
 
     add(arg: number): void {
@@ -27,8 +29,18 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
         console.log(this.linkedList.getHead());
     }
 
+    addPosition(arg: number, pos: number): void {
+        console.log(pos);
+        this.linkedList.addInPosition(arg, pos);
+    }
+
     handleAdd() {
         this.add(this.state.addedValue)
+        this.setState({ ...this.state, linkedList: this.linkedList })
+    }
+
+    handleAddPosition(position: number) {
+        this.addPosition(this.state.addedValue, position);
         this.setState({ ...this.state, linkedList: this.linkedList })
     }
 
@@ -46,7 +58,7 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
                         onChange={this.handleChange}></Form>
                 </div>
                 <div>
-                    <NodeList linkedList={this.state.linkedList} onClick={this.handleAdd}
+                    <NodeList linkedList={this.state.linkedList} onClick={this.handleAddPosition}
                         addedValue={this.state.addedValue}
                         handleChange={this.handleChange}></NodeList>
                 </div>
