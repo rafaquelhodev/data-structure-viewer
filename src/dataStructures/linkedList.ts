@@ -3,7 +3,7 @@ import { DataStructure } from "./dataStructure"
 
 type node = Node | null;
 
-class Node{
+class Node {
 
     value: number;
     next: node;
@@ -42,6 +42,29 @@ export class LinkedListDs implements DataStructure<number>{
         }
 
         this.nElements += 1;
+    }
+
+    addInPosition(value: number, pos: number) {
+
+        if (pos > this.nElements) {
+            throw new Error("The number of elements is less than the required position");
+        }
+
+        let currentNode = this.head as node | undefined;
+
+        for (let index = 0; index < pos; index++) {
+            currentNode = currentNode?.next;
+        }
+
+        if (currentNode == null) {
+            throw new Error("The number of elements is less than the required position");
+        }
+
+        let nextNode = currentNode.next;
+
+        let newNode = new Node(value, nextNode);
+
+        currentNode.next = newNode;
     }
 
     getHead() {
