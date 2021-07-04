@@ -67,36 +67,56 @@ export class LinkedListDs implements DataStructure<number>{
         currentNode.next = newNode;
     }
 
-    remove(pos: number = this.nElements): void {
+    remove(pos: number = this.nElements - 1): void {
         if (this.nElements == 0) {
             throw new Error("Error during deletion: the linked list is empty.");
-        } else if (pos > this.nElements) {
+        } else if (pos < 0 || pos >= this.nElements) {
             throw new Error("Error during deletion: invalid position");
         }
 
-        let currentNode = this.head;
-        let previousNode = this.head;
-        let index = 0;
+        this.nElements -= 1;
 
-        while (currentNode != null && index < pos) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-            index += 1;
-        }
-
-        if (previousNode == null) {
-            throw new Error("Error during deletion: the linked list is empty.");
-        }
-
-        if (currentNode == null) {
-            previousNode.next = null;
+        let temp = this.head;
+        if (pos == 0) {
+            this.head = temp == null ? null : temp.next;
+            if (this.nElements <= 1) {
+                this.tail = this.head;
+            }
             return;
         }
 
-        previousNode.next = currentNode.next;
+        let previous = null;
+
+        let index = 0;
+
+        while (temp != null && index != pos) {
+            previous = temp;
+            temp = temp.next;
+
+            index += 1;
+        }
+
+        if (previous == null) {
+            throw new Error("Error during deletion: the linked list is empty.");
+        }
+
+        previous.next = temp == null ? null : temp.next;
+
+        if (pos == this.nElements) {
+            this.tail = previous;
+        }
+
     }
 
     getHead() {
         return this.head;
+    }
+
+    getTail() {
+        return this.tail;
+    }
+
+    getNumberOfElements() {
+        return this.nElements;
     }
 }
