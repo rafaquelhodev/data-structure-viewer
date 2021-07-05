@@ -118,3 +118,63 @@ describe("remove", () => {
         expect(t).toThrow("Error during deletion: the linked list is empty.");
     });
 });
+
+describe("add position", () => {
+    it("should add at position 0 and change head node", () => {
+        const linkedList = new LinkedListDs();
+        linkedList.add(-1);
+        linkedList.add(-2);
+        linkedList.add(-3);
+
+        linkedList.addInPosition(10, 0);
+
+        expect(linkedList.getNumberOfElements()).toBe(4);
+        expect(linkedList.getHead()?.value).toBe(10);
+    });
+
+    it("should add at last position and change tail node", () => {
+        const linkedList = new LinkedListDs();
+        linkedList.add(-1);
+        linkedList.add(-2);
+        linkedList.add(-3);
+
+        linkedList.addInPosition(10, 3);
+
+        expect(linkedList.getNumberOfElements()).toBe(4);
+        expect(linkedList.getTail()?.value).toBe(10);
+    });
+
+    it("should add at node between two nodes", () => {
+        const linkedList = new LinkedListDs();
+        linkedList.add(-1);
+        linkedList.add(-2);
+        linkedList.add(-3);
+
+        linkedList.addInPosition(10, 1);
+
+        expect(linkedList.getNumberOfElements()).toBe(4);
+        expect(linkedList.getHead()?.next?.value).toBe(10);
+    });
+
+    it("should return error when the required position is greater than the number of elements", () => {
+        const linkedList = new LinkedListDs();
+        linkedList.add(-1);
+        linkedList.add(-2);
+        linkedList.add(-3);
+
+        const t = () => linkedList.addInPosition(10, 4);
+        expect(t).toThrow(Error);
+        expect(t).toThrow("The number of elements is less than the required position");
+    });
+
+    it("should return error when the required position is invalid", () => {
+        const linkedList = new LinkedListDs();
+        linkedList.add(-1);
+        linkedList.add(-2);
+        linkedList.add(-3);
+
+        const t = () => linkedList.addInPosition(10, -1);
+        expect(t).toThrow(Error);
+        expect(t).toThrow("Error during deletion: invalid position");
+    });
+});
