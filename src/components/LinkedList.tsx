@@ -17,16 +17,11 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
 
         this.state = { linkedList: this.linkedList, addedValue: 1 }
 
-        this.add = this.add.bind(this)
-        this.handleAdd = this.handleAdd.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-        this.addPosition = this.addPosition.bind(this)
-        this.handleAddPosition = this.handleAddPosition.bind(this)
-    }
-
-    add(arg: number): void {
-        this.linkedList.add(arg);
-        console.log(this.linkedList.getHead());
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.addPosition = this.addPosition.bind(this);
+        this.handleAddPosition = this.handleAddPosition.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
 
     addPosition(arg: number, pos: number): void {
@@ -35,13 +30,18 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
     }
 
     handleAdd() {
-        this.add(this.state.addedValue)
+        this.linkedList.addInPosition(this.state.addedValue)
         this.setState({ ...this.state, linkedList: this.linkedList })
     }
 
     handleAddPosition(position: number) {
         this.addPosition(this.state.addedValue, position);
-        this.setState({ ...this.state, linkedList: this.linkedList })
+        this.setState({ ...this.state, linkedList: this.linkedList });
+    }
+
+    handleRemove(position: number) {
+        this.linkedList.remove(position);
+        this.setState({ ...this.state, linkedList: this.linkedList });
     }
 
     handleChange(e: any) {
@@ -60,7 +60,8 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
                 <div>
                     <NodeList linkedList={this.state.linkedList} onClick={this.handleAddPosition}
                         addedValue={this.state.addedValue}
-                        handleChange={this.handleChange}></NodeList>
+                        handleChange={this.handleChange}
+                        handleRemove={this.handleRemove}></NodeList>
                 </div>
             </div>
         )

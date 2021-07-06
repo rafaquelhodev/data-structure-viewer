@@ -4,6 +4,7 @@ import Node from "./Node";
 interface InputProps2 {
     linkedList: LinkedListDs;
     onClick: (arg: number) => void;
+    handleRemove: (arg: number) => void;
     handleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void;
     addedValue: number;
 }
@@ -21,7 +22,8 @@ function renderLinkedList(props: InputProps2) {
             addedValue={props.addedValue}
             handleChange={props.handleChange}
             id={nodeId}
-            addedPosition={nodeId + 1}></Node>;
+            addedPosition={nodeId + 1}
+            handleRemove={props.handleRemove}></Node>;
 
         linkedListJsx.push(el);
 

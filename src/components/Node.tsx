@@ -9,6 +9,7 @@ interface InputProps2 {
     id: number;
     value: number;
     onClick: (arg: number) => void;
+    handleRemove: (arg: number) => void;
     handleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void;
     addedValue: number;
     addedPosition: number;
@@ -37,6 +38,10 @@ const Node: React.FC<InputProps2> = (props) => {
         toggleModal();
     }
 
+    function removeNode() {
+        props.handleRemove(props.id);
+    }
+
     return (
         (
             <div key={props.id}>
@@ -48,6 +53,9 @@ const Node: React.FC<InputProps2> = (props) => {
                         <span>+</span>
                     </button>
 
+                    <button className="buttonRemove" onClick={removeNode}>
+                        <span>x</span>
+                    </button>
                     <Modal
                         isOpen={isOpen}
                         onRequestClose={toggleModal}
