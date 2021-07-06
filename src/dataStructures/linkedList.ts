@@ -44,27 +44,47 @@ export class LinkedListDs implements DataStructure<number>{
         this.nElements += 1;
     }
 
-    addInPosition(value: number, pos: number) {
+    addInPosition(value: number, pos: number = this.nElements) {
 
         if (pos > this.nElements) {
             throw new Error("The number of elements is less than the required position");
+        } else if (pos < 0) {
+            throw new Error("Error during addition: invalid position");
         }
 
-        let currentNode = this.head as node | undefined;
+        let prevNode = this.head;
+        let nextNode = prevNode != null ? prevNode.next : null;
 
-        for (let index = 0; index < pos; index++) {
-            currentNode = currentNode?.next;
+        if (pos == 0) {
+            this.head = new Node(value, nextNode);
         }
 
-        if (currentNode == null) {
-            throw new Error("The number of elements is less than the required position");
+        if (pos == this.nElements) {
+            this.tail = new Node(value, null);
         }
 
-        let nextNode = currentNode.next;
+        this.nElements += 1;
+
+        if (this.nElements == 1) {
+            return;
+        }
+
+        let index = 0;
+        while (nextNode != null && index != pos - 1) {
+            prevNode = nextNode;
+            nextNode = nextNode.next;
+            index += 1;
+        }
 
         let newNode = new Node(value, nextNode);
 
-        currentNode.next = newNode;
+        if (prevNode == null) {
+            throw new Error("Error during addition: a null node was found");
+        }
+
+        prevNode.next = newNode;
+
+
     }
 
     remove(pos: number = this.nElements - 1): void {
@@ -118,5 +138,15 @@ export class LinkedListDs implements DataStructure<number>{
 
     getNumberOfElements() {
         return this.nElements;
+    }
+
+    print() {
+        let print = "";
+        let node = this.getHead();
+        while (node) {
+            print += node.value + ", ";
+            node = node.next;
+        }
+        console.log(print);
     }
 }

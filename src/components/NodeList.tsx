@@ -21,7 +21,7 @@ function renderLinkedList(props: InputProps2) {
             addedValue={props.addedValue}
             handleChange={props.handleChange}
             id={nodeId}
-            addedPosition={nodeId}></Node>;
+            addedPosition={nodeId + 1}></Node>;
 
         linkedListJsx.push(el);
 
