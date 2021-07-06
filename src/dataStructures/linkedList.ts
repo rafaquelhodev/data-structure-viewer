@@ -83,8 +83,6 @@ export class LinkedListDs implements DataStructure<number>{
         }
 
         prevNode.next = newNode;
-
-
     }
 
     remove(pos: number = this.nElements - 1): void {
