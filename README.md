@@ -1,6 +1,6 @@
 # Data structure viewer
 
-Iteractive application build in React.js to understand the mechanics of common data structures present in computer science.
+Interactive application build in React.js to understand the mechanics of common data structures present in computer science.
 
 ## Roadmap
 * Linkedlist (under construction)
