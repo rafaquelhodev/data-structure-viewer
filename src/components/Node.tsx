@@ -56,6 +56,9 @@ const Node: React.FC<InputProps2> = (props) => {
                     <button className="buttonRemove" onClick={removeNode}>
                         <span>x</span>
                     </button>
+
+                    <div className="rightArrow">&#8594;</div>
+
                     <Modal
                         isOpen={isOpen}
                         onRequestClose={toggleModal}

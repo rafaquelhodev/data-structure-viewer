@@ -1,5 +1,6 @@
 import { LinkedListDs } from "../dataStructures/linkedList";
 import Node from "./Node";
+import "./NullNode.scss";
 
 interface InputProps2 {
     linkedList: LinkedListDs;
@@ -30,6 +31,10 @@ function renderLinkedList(props: InputProps2) {
         currentNode = currentNode.next;
 
         nodeId += 1;
+    }
+
+    if (linkedListJsx.length >= 1) {
+        linkedListJsx.push(<div className="nullNode">NULL</div>)
     }
 
     return linkedListJsx;
