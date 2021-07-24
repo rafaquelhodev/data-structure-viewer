@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes, MouseEvent, useState } from 'react';
 import Modal from "react-modal";
 import './Node.scss';
 import './Modal.scss';
+import './Rectangle.scss';
 import Form from './Form';
 
 
@@ -13,17 +14,6 @@ interface InputProps2 {
     handleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void;
     addedValue: number;
     addedPosition: number;
-}
-
-const rectangle = {
-    "width": '100px',
-    "height": '150px',
-    "background": 'green',
-    "margin": "100px",
-    "display": "flex",
-    "flex-direction": "column",
-    "justify-content": "flex-end",
-    "align-items": "center"
 }
 
 const Node: React.FC<InputProps2> = (props) => {
@@ -46,7 +36,7 @@ const Node: React.FC<InputProps2> = (props) => {
         (
             <div key={props.id}>
                 <div className="containerNode">
-                    <div className="rectangle" style={rectangle}>
+                    <div className="rectangle">
                         <div>value: {props.value}</div>
                     </div>
                     <button className="buttonAdd" onClick={toggleModal}>
