@@ -34,7 +34,7 @@ const Node: React.FC<InputProps2> = (props) => {
 
     return (
         (
-            <div key={props.id}>
+            <div>
                 <div className="containerNode">
                     <div className="rectangle">
                         <div>value: {props.value}</div>

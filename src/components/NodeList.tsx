@@ -18,7 +18,7 @@ function renderLinkedList(props: InputProps2) {
     let nodeId = 0;
 
     while (currentNode != null) {
-        const el = <Node value={currentNode.value}
+        const el = <Node key={nodeId + 1} value={currentNode.value}
             onClick={props.onClick}
             addedValue={props.addedValue}
             handleChange={props.handleChange}
@@ -28,13 +28,15 @@ function renderLinkedList(props: InputProps2) {
 
         linkedListJsx.push(el);
 
+        console.log(linkedListJsx)
+
         currentNode = currentNode.next;
 
         nodeId += 1;
     }
 
     if (linkedListJsx.length >= 1) {
-        linkedListJsx.push(<div className="nullNode">NULL</div>)
+        linkedListJsx.push(<div key={nodeId + 1} className="nullNode">NULL</div>)
     }
 
     return linkedListJsx;
