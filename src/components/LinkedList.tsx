@@ -1,8 +1,8 @@
+import Console from "../components/Console";
 import { Component } from "react"
 import Form from "../components/Form";
 import NodeList from "../components/NodeList";
 import { LinkedListDs } from "../dataStructures/linkedList";
-
 
 export default class LinkedList extends Component<{}, { linkedList: LinkedListDs, addedValue: number }>{
 
@@ -23,7 +23,6 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
     }
 
     addPosition(arg: number, pos: number): void {
-        console.log(pos);
         this.linkedList.addInPosition(arg, pos);
     }
 
@@ -35,6 +34,7 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
     handleAddPosition(position: number) {
         this.addPosition(this.state.addedValue, position);
         this.setState({ ...this.state, linkedList: this.linkedList });
+        console.log(this.linkedList.getLogger());
     }
 
     handleRemove(position: number) {
@@ -60,6 +60,9 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
                         addedValue={this.state.addedValue}
                         handleChange={this.handleChange}
                         handleRemove={this.handleRemove}></NodeList>
+                </div>
+                <div>
+                    <Console list={this.state.linkedList.getLogger()}></Console>
                 </div>
             </div>
         )
