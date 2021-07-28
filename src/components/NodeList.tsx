@@ -1,16 +1,9 @@
-import { LinkedListDs } from "../dataStructures/linkedList";
+import { NodeListProperties } from "../types/NodeProperties";
 import Node from "./Node";
 import "./NullNode.scss";
 
-interface InputProps2 {
-    linkedList: LinkedListDs;
-    onClick: (arg: number) => void;
-    handleRemove: (arg: number) => void;
-    handleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void;
-    addedValue: number;
-}
 
-function renderLinkedList(props: InputProps2) {
+function renderLinkedList(props: NodeListProperties) {
     let linkedListJsx: JSX.Element[] = [];
 
     let currentNode = props.linkedList.getHead();
@@ -18,7 +11,8 @@ function renderLinkedList(props: InputProps2) {
     let nodeId = 0;
 
     while (currentNode != null) {
-        const el = <Node key={nodeId + 1} value={currentNode.value}
+        const el = <Node key={nodeId + 1}
+            value={currentNode.value}
             onClick={props.onClick}
             addedValue={props.addedValue}
             handleChange={props.handleChange}
@@ -46,7 +40,7 @@ const nodeListStyle = {
     display: 'flex'
 }
 
-const NodeList: React.FC<InputProps2> = (props) => {
+const NodeList: React.FC<NodeListProperties> = (props) => {
     return (
         <div style={nodeListStyle}>
             {renderLinkedList(props)}
