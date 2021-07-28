@@ -19,11 +19,13 @@ export class LinkedListDs implements DataStructure<number>{
     private head: node;
     private tail: node;
     private nElements: number;
+    private logger: string[];
 
     constructor() {
         this.head = null;
         this.tail = null;
         this.nElements = 0;
+        this.logger = [];
     }
 
     add(value: number): void {
@@ -57,6 +59,7 @@ export class LinkedListDs implements DataStructure<number>{
 
         if (pos == 0) {
             this.head = new Node(value, nextNode);
+            this.logger.unshift(`Pointing to node at i = ${pos}`);
         }
 
         if (pos == this.nElements) {
@@ -74,6 +77,7 @@ export class LinkedListDs implements DataStructure<number>{
             prevNode = nextNode;
             nextNode = nextNode.next;
             index += 1;
+            this.logger.unshift(`Pointing to node at i = ${index}`);
         }
 
         let newNode = new Node(value, nextNode);
@@ -136,6 +140,10 @@ export class LinkedListDs implements DataStructure<number>{
 
     getNumberOfElements() {
         return this.nElements;
+    }
+
+    getLogger() {
+        return this.logger;
     }
 
     print() {
