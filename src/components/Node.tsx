@@ -1,22 +1,13 @@
-import React, { InputHTMLAttributes, MouseEvent, useState } from 'react';
+import React, { useState } from 'react';
 import Modal from "react-modal";
 import './Node.scss';
 import './Modal.scss';
 import './Rectangle.scss';
 import Form from './Form';
+import { NodeProperties } from '../types/NodeProperties';
 
 
-interface InputProps2 {
-    id: number;
-    value: number;
-    onClick: (arg: number) => void;
-    handleRemove: (arg: number) => void;
-    handleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void;
-    addedValue: number;
-    addedPosition: number;
-}
-
-const Node: React.FC<InputProps2> = (props) => {
+const Node: React.FC<NodeProperties> = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
@@ -34,7 +25,7 @@ const Node: React.FC<InputProps2> = (props) => {
 
     return (
         (
-            <div key={props.id}>
+            <div>
                 <div className="containerNode">
                     <div className="rectangle">
                         <div>value: {props.value}</div>

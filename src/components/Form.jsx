@@ -6,7 +6,7 @@ export default props => {
         <div className="row">
             <input id="description"
                 className="form-control"
-                placeholder="Add a task"
+                placeholder="Node value"
                 value={props.value}
                 onChange={props.onChange}></input>
 

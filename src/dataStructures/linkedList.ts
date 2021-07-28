@@ -29,7 +29,7 @@ export class LinkedListDs implements DataStructure<number>{
     add(value: number): void {
         const newNode = new Node(value, null);
 
-        if (this.nElements == 0) {
+        if (this.nElements === 0) {
             this.head = newNode;
             this.tail = newNode;
         } else {
@@ -53,7 +53,7 @@ export class LinkedListDs implements DataStructure<number>{
         }
 
         let prevNode = this.head;
-        let nextNode = prevNode != null ? prevNode.next : null;
+        let nextNode = prevNode !== null ? prevNode.next : null;
 
         if (pos == 0) {
             this.head = new Node(value, nextNode);
@@ -70,7 +70,7 @@ export class LinkedListDs implements DataStructure<number>{
         }
 
         let index = 0;
-        while (nextNode != null && index != pos - 1) {
+        while (nextNode !== null && index !== pos - 1) {
             prevNode = nextNode;
             nextNode = nextNode.next;
             index += 1;
@@ -107,7 +107,7 @@ export class LinkedListDs implements DataStructure<number>{
 
         let index = 0;
 
-        while (temp != null && index != pos) {
+        while (temp !== null && index !== pos) {
             previous = temp;
             temp = temp.next;
 
