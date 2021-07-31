@@ -1,9 +1,9 @@
 import LinkedList from "../components/LinkedList"
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
 } from "react-router-dom";
 
 export default props => (
