@@ -49,29 +49,6 @@ export class LinkedListDs implements DataStructure<number>{
         }
     }
 
-    add(value: number): void {
-        this.logger.newLoggerBlock("Adding tail node");
-        this.logger.addLogBlock(`Pointing to node to tail`);
-
-        const newNode = new Node(value, null);
-
-        if (this.nElements === 0) {
-            this.head = newNode;
-            this.tail = newNode;
-        } else {
-            if (!this.tail) {
-                throw console.error();
-            }
-
-            this.tail.next = newNode;
-            this.tail = newNode;
-        }
-
-        this.nElements += 1;
-
-        this.logger.endLogBlock();
-    }
-
     private _addInPosition(value: number, pos: number = this.nElements) {
         if (pos > this.nElements) {
             throw new Error("The number of elements is less than the required position");
