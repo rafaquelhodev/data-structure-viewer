@@ -34,7 +34,6 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
     handleAddPosition(position: number) {
         this.addPosition(this.state.addedValue, position);
         this.setState({ ...this.state, linkedList: this.linkedList });
-        console.log(this.linkedList.getLogger());
     }
 
     handleRemove(position: number) {
@@ -62,7 +61,7 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
                         handleRemove={this.handleRemove}></NodeList>
                 </div>
                 <div>
-                    <Console list={this.state.linkedList.getLogger()}></Console>
+                    <Console list={this.state.linkedList.getLogs()}></Console>
                 </div>
             </div>
         )

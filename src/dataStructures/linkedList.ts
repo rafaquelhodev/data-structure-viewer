@@ -1,4 +1,5 @@
 import { DataStructure } from "./dataStructure"
+import Logger from "./logging/logger";
 
 
 type node = Node | null;
@@ -19,13 +20,13 @@ export class LinkedListDs implements DataStructure<number>{
     private head: node;
     private tail: node;
     private nElements: number;
-    private logger: string[];
+    private logger: Logger;
 
     constructor() {
         this.head = null;
         this.tail = null;
         this.nElements = 0;
-        this.logger = [];
+        this.logger = new Logger();
     }
 
     add(value: number): void {
@@ -48,6 +49,8 @@ export class LinkedListDs implements DataStructure<number>{
 
     addInPosition(value: number, pos: number = this.nElements) {
 
+        this.logger.newLoggerBlock("Adding node");
+
         if (pos > this.nElements) {
             throw new Error("The number of elements is less than the required position");
         } else if (pos < 0) {
@@ -59,7 +62,7 @@ export class LinkedListDs implements DataStructure<number>{
 
         if (pos == 0) {
             this.head = new Node(value, nextNode);
-            this.logger.unshift(`Pointing to node at i = ${pos}`);
+            this.logger.addLogBlock(`Pointing to node at i = ${pos}`);
         }
 
         if (pos == this.nElements) {
@@ -77,7 +80,7 @@ export class LinkedListDs implements DataStructure<number>{
             prevNode = nextNode;
             nextNode = nextNode.next;
             index += 1;
-            this.logger.unshift(`Pointing to node at i = ${index}`);
+            this.logger.addLogBlock(`Pointing to node at i = ${index}`);
         }
 
         let newNode = new Node(value, nextNode);
@@ -87,6 +90,8 @@ export class LinkedListDs implements DataStructure<number>{
         }
 
         prevNode.next = newNode;
+
+        this.logger.endLogBlock();
     }
 
     remove(pos: number = this.nElements - 1): void {
@@ -142,8 +147,8 @@ export class LinkedListDs implements DataStructure<number>{
         return this.nElements;
     }
 
-    getLogger() {
-        return this.logger;
+    getLogs() {
+        return this.logger.getLog();
     }
 
     print() {
