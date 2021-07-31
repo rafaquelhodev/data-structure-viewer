@@ -1,4 +1,5 @@
 import { DataStructure } from "./dataStructure"
+import Logger from "./logging/logger";
 
 
 type node = Node | null;
@@ -19,14 +20,19 @@ export class LinkedListDs implements DataStructure<number>{
     private head: node;
     private tail: node;
     private nElements: number;
+    private logger: Logger;
 
     constructor() {
         this.head = null;
         this.tail = null;
         this.nElements = 0;
+        this.logger = new Logger();
     }
 
     add(value: number): void {
+        this.logger.newLoggerBlock("Adding tail node");
+        this.logger.addLogBlock(`Pointing to node to tail`);
+
         const newNode = new Node(value, null);
 
         if (this.nElements === 0) {
@@ -42,10 +48,33 @@ export class LinkedListDs implements DataStructure<number>{
         }
 
         this.nElements += 1;
+
+        this.logger.endLogBlock();
     }
 
     addInPosition(value: number, pos: number = this.nElements) {
+        try {
+            this.logger.newLoggerBlock("Adding node");
+            this._addInPosition(value, pos);
+            this.logger.endLogBlock();
+        } catch (ex) {
+            alert(ex);
+            throw ex;
+        }
+    }
 
+    remove(pos: number = this.nElements - 1) {
+        try {
+            this.logger.newLoggerBlock("Removing node");
+            this._remove(pos);
+            this.logger.endLogBlock();
+        } catch (ex) {
+            alert(ex);
+            throw ex;
+        }
+    }
+
+    private _addInPosition(value: number, pos: number = this.nElements) {
         if (pos > this.nElements) {
             throw new Error("The number of elements is less than the required position");
         } else if (pos < 0) {
@@ -57,6 +86,7 @@ export class LinkedListDs implements DataStructure<number>{
 
         if (pos == 0) {
             this.head = new Node(value, nextNode);
+            this.logger.addLogBlock(`Pointing to node at i = ${pos}`);
         }
 
         if (pos == this.nElements) {
@@ -74,6 +104,7 @@ export class LinkedListDs implements DataStructure<number>{
             prevNode = nextNode;
             nextNode = nextNode.next;
             index += 1;
+            this.logger.addLogBlock(`Pointing to node at i = ${index}`);
         }
 
         let newNode = new Node(value, nextNode);
@@ -85,7 +116,7 @@ export class LinkedListDs implements DataStructure<number>{
         prevNode.next = newNode;
     }
 
-    remove(pos: number = this.nElements - 1): void {
+    private _remove(pos: number = this.nElements - 1): void {
         if (this.nElements == 0) {
             throw new Error("Error during deletion: the linked list is empty.");
         } else if (pos < 0 || pos >= this.nElements) {
@@ -96,6 +127,8 @@ export class LinkedListDs implements DataStructure<number>{
 
         let temp = this.head;
         if (pos == 0) {
+            this.logger.addLogBlock(`Pointing to node at i = ${pos}`);
+
             this.head = temp == null ? null : temp.next;
             if (this.nElements <= 1) {
                 this.tail = this.head;
@@ -112,6 +145,8 @@ export class LinkedListDs implements DataStructure<number>{
             temp = temp.next;
 
             index += 1;
+
+            this.logger.addLogBlock(`Pointing to node at i = ${index}`);
         }
 
         if (previous == null) {
@@ -123,7 +158,6 @@ export class LinkedListDs implements DataStructure<number>{
         if (pos == this.nElements) {
             this.tail = previous;
         }
-
     }
 
     getHead() {
@@ -136,6 +170,10 @@ export class LinkedListDs implements DataStructure<number>{
 
     getNumberOfElements() {
         return this.nElements;
+    }
+
+    getLogs() {
+        return this.logger.getLog();
     }
 
     print() {

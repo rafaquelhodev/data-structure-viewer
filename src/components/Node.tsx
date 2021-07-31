@@ -47,6 +47,7 @@ const Node: React.FC<NodeProperties> = (props) => {
                         className="mymodal"
                         overlayClassName="myoverlay"
                         closeTimeoutMS={50}
+                        ariaHideApp={false}
                     >
 
                         <div>Add next node</div>

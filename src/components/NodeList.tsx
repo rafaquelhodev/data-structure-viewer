@@ -22,8 +22,6 @@ function renderLinkedList(props: NodeListProperties) {
 
         linkedListJsx.push(el);
 
-        console.log(linkedListJsx)
-
         currentNode = currentNode.next;
 
         nodeId += 1;
