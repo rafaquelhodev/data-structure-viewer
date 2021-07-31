@@ -12,7 +12,7 @@ const Row = (props: {
     const text = data[index];
     return (
         <div
-            className={`d-flex ${index % 2 === 0 ? 'even' : 'odd'}`}
+            className={`left-text ${index % 2 === 0 ? 'even' : 'odd'}`}
             key={index}
             style={style}
         >
