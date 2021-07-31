@@ -29,6 +29,29 @@ export class LinkedListDs implements DataStructure<number>{
         this.logger = new Logger();
     }
 
+    add(value: number): void {
+        this.logger.newLoggerBlock("Adding tail node");
+        this.logger.addLogBlock(`Pointing to node to tail`);
+
+        const newNode = new Node(value, null);
+
+        if (this.nElements === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            if (!this.tail) {
+                throw console.error();
+            }
+
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+
+        this.nElements += 1;
+
+        this.logger.endLogBlock();
+    }
+
     addInPosition(value: number, pos: number = this.nElements) {
         try {
             this.logger.newLoggerBlock("Adding node");
@@ -36,6 +59,7 @@ export class LinkedListDs implements DataStructure<number>{
             this.logger.endLogBlock();
         } catch (ex) {
             alert(ex);
+            throw ex;
         }
     }
 
@@ -46,6 +70,7 @@ export class LinkedListDs implements DataStructure<number>{
             this.logger.endLogBlock();
         } catch (ex) {
             alert(ex);
+            throw ex;
         }
     }
 
