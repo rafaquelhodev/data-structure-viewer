@@ -4,23 +4,23 @@
 
 .buttonAdd {
     position: absolute;
-    top: 70px;
-    left: 170px;
+    top: 25px;
+    left: 160px;
     z-index: 10;
     color: blue;
 }
 
 .buttonRemove {
     position: absolute;
-    top: 10px;
-    left: 140px;
+    top: 25px;
+    left: 120px;
     z-index: 10;
     color: red;
 }
 
 .rightArrow {
     position: absolute;
-    top: 30px;
+    top: -10px;
     left: 200px;
     z-index: 10;
     color: black;
