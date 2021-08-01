@@ -1,8 +1,9 @@
 import Console from "../components/Console";
 import { Component } from "react"
-import Form from "../components/Form";
+import Form from "./Form";
 import NodeList from "../components/NodeList";
 import { LinkedListDs } from "../dataStructures/linkedList";
+import Box from "./Box";
 
 export default class LinkedList extends Component<{}, { linkedList: LinkedListDs, addedValue: number }>{
 
@@ -49,10 +50,14 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
         return (
             <div>
                 <div>
-                    <Form
-                        handleAdd={this.handleAdd}
-                        value={this.state.addedValue}
-                        onChange={this.handleChange}></Form>
+                    <Box>
+                        <Form
+                            title="Add node to tail"
+                            handleAdd={this.handleAdd}
+                            value={this.state.addedValue}
+                            onChange={this.handleChange}></Form>
+                    </Box>
+
                 </div>
                 <div>
                     <NodeList linkedList={this.state.linkedList} onClick={this.handleAddPosition}
@@ -63,7 +68,7 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
                 <div>
                     <Console list={this.state.linkedList.getLogs()}></Console>
                 </div>
-            </div>
+            </div >
         )
     }
 }
