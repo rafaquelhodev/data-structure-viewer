@@ -1,5 +1,7 @@
 import { LinkedListDs } from "./linkedList";
 
+jest.spyOn(window, 'alert').mockImplementation(() => { });
+
 describe("remove", () => {
     it("should delete last node when no position is given", () => {
         const linkedList = new LinkedListDs();
@@ -87,9 +89,8 @@ describe("remove", () => {
         linkedList.add(-2);
         linkedList.add(-3);
 
-        const t = () => linkedList.remove(-1);
-        expect(t).toThrow(Error);
-        expect(t).toThrow("Error during deletion: invalid position");
+        linkedList.remove(-1);
+        expect(window.alert).toBeCalledWith(new Error("Error during deletion: invalid position"));
     });
 
     it("should throw error when position is greater than the number of elements", () => {
@@ -98,9 +99,8 @@ describe("remove", () => {
         linkedList.add(-2);
         linkedList.add(-3);
 
-        const t = () => linkedList.remove(3);
-        expect(t).toThrow(Error);
-        expect(t).toThrow("Error during deletion: invalid position");
+        linkedList.remove(3);
+        expect(window.alert).toBeCalledWith(new Error("Error during deletion: invalid position"));
     });
 
     it("should throw error when the number of elements is zero", () => {
@@ -113,9 +113,8 @@ describe("remove", () => {
         linkedList.remove();
         linkedList.remove();
 
-        const t = () => linkedList.remove();
-        expect(t).toThrow(Error);
-        expect(t).toThrow("Error during deletion: the linked list is empty.");
+        linkedList.remove(3);
+        expect(window.alert).toBeCalledWith(new Error("Error during deletion: the linked list is empty."));
     });
 });
 
@@ -216,9 +215,8 @@ describe("add position", () => {
         linkedList.add(-2);
         linkedList.add(-3);
 
-        const t = () => linkedList.addInPosition(10, 4);
-        expect(t).toThrow(Error);
-        expect(t).toThrow("The number of elements is less than the required position");
+        linkedList.addInPosition(10, 4);
+        expect(window.alert).toBeCalledWith(new Error("The number of elements is less than the required position"));
     });
 
     it("should return error when the required position is invalid", () => {
@@ -227,8 +225,7 @@ describe("add position", () => {
         linkedList.add(-2);
         linkedList.add(-3);
 
-        const t = () => linkedList.addInPosition(10, -1);
-        expect(t).toThrow(Error);
-        expect(t).toThrow("Error during addition: invalid position");
+        linkedList.addInPosition(10, -1);
+        expect(window.alert).toBeCalledWith(new Error("Error during addition: invalid position"));
     });
 });

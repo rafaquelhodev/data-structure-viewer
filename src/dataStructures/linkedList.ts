@@ -59,7 +59,6 @@ export class LinkedListDs implements DataStructure<number>{
             this.logger.endLogBlock();
         } catch (ex) {
             alert(ex);
-            throw ex;
         }
     }
 
@@ -70,7 +69,6 @@ export class LinkedListDs implements DataStructure<number>{
             this.logger.endLogBlock();
         } catch (ex) {
             alert(ex);
-            throw ex;
         }
     }
 
