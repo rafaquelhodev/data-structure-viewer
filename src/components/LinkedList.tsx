@@ -49,6 +49,7 @@ export default class LinkedList extends Component<{}, { linkedList: LinkedListDs
     render() {
         return (
             <div>
+                <h1>Linked list</h1>
                 <div>
                     <Box>
                         <Form
